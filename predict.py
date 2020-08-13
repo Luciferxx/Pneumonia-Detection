@@ -11,7 +11,7 @@ def pre_process(img):
     return resized
 def predict(img):
     img=pre_process(img)
-    MODEL_URL = "http://localhost:8501/v1/models/saved_model1:predict"
+    MODEL_URL = "https://saved-model1.herokuapp.com/v1/models/saved_model1:predict"
     data = json.dumps({
     "signature_name": "serving_default",
     "instances": img.tolist()
