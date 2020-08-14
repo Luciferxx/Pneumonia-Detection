@@ -5,7 +5,7 @@ Created on Tue Aug 11 18:03:02 2020
 @author: Vatsal Tulshyan
 """
 
-from flask import Flask,jsonify
+from flask import Flask,jsonify,request
 from flask_cors import CORS
 from predict import predict
 app = Flask(__name__) 
@@ -13,9 +13,9 @@ CORS(app)
 
 @app.route('/api',methods=['POST'])
 def chat_output():
-    img = Flask.request.files.get('imagefile', '')
+    img = request.files['file']
     #Prediction np array
-    result = predict(img)
+    result = predict(img.read())
 
     if result==1:
         reply="Pneumonia Detected!"
